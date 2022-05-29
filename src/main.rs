@@ -12,6 +12,7 @@ mod output;
 mod output_csv;
 mod output_none;
 mod output_raw;
+mod output_rawnoattach;
 
 fn run(config: &args::Config) -> Result<(), anyhow::Error> {
 	// output
@@ -20,6 +21,11 @@ fn run(config: &args::Config) -> Result<(), anyhow::Error> {
 			Box::new(crate::output_none::SignalOutputNone::new())
 		}
 		crate::output::SignalOutputType::Raw => Box::new(crate::output_raw::SignalOutputRaw::new(
+			&config.path_output,
+			config.force_overwrite,
+			config.output_raw_db_in_memory,
+		)?),
+		crate::output::SignalOutputType::RawNoAttach => Box::new(crate::output_rawnoattach::SignalOutputRawNoAttach::new(
 			&config.path_output,
 			config.force_overwrite,
 			config.output_raw_db_in_memory,

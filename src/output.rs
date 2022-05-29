@@ -60,4 +60,5 @@ pub enum SignalOutputType {
 	None,
 	Raw,
 	Csv,
+	RawNoAttach,
 }

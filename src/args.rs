@@ -51,7 +51,7 @@ impl Config {
 			)
 			.arg(
 				clap::Arg::with_name("output-type")
-					.help("Output type, either RAW, CSV or NONE")
+					.help("Output type, either RAW, CSV, RAWNOATTACH or NONE")
 					.long("output-type")
 					.short("t")
 					.takes_value(true)
@@ -187,6 +187,7 @@ impl Config {
 				"none" => crate::output::SignalOutputType::None,
 				"raw" => crate::output::SignalOutputType::Raw,
 				"csv" => crate::output::SignalOutputType::Csv,
+				"rawnoattach" => crate::output::SignalOutputType::RawNoAttach,
 				_ => return Err(anyhow!("Unknown output type given")),
 			}
 		} else {
